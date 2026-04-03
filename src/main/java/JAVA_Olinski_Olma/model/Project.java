@@ -24,5 +24,5 @@ public class Project {
             joinColumns = @JoinColumn(name = "project_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private Set<User> users;
+    private Set<Users> users;
 }
