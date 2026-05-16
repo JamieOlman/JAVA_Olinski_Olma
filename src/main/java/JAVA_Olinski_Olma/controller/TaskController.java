@@ -55,4 +55,14 @@ public class TaskController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @Operation(summary = "Retrieve a task by ID", description = "Fetches a single task by their unique identifier")
+    @GetMapping("/{id}")
+    public ResponseEntity<Task> getTaskById(
+            @Parameter(name = "id", description = "The unique identifier of the task to retrieve", required = true, example = "1")
+            @PathVariable Long id) {
+        var task = taskService.getTaskById(id);
+        return task.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
 }

@@ -54,4 +54,14 @@ public class UserController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @Operation(summary = "Retrieve a user by ID", description = "Fetches a single user by their unique identifier")
+    @GetMapping("/{id}")
+    public ResponseEntity<Users> getUserById(
+            @Parameter(name = "id", description = "The unique identifier of the user to retrieve", required = true, example = "1")
+            @PathVariable Long id) {
+        var user = userService.getUserById(id);
+        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
 }

@@ -48,4 +48,8 @@ public class ProjectService {
         }
         return false;
     }
+
+    public Optional<Project> getProjectById(Long id) {
+        return projectRepository.findById(id);
+    }
 }
