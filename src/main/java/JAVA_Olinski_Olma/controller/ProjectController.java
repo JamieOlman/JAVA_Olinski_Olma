@@ -55,4 +55,13 @@ public class ProjectController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @Operation(summary = "Retrieve a project by ID", description = "Fetches a single project by their unique identifier")
+    @GetMapping("/{id}")
+    public ResponseEntity<Project> getProjectById(
+            @Parameter(name = "id", description = "The unique identifier of the project to retrieve", required = true, example = "1")
+            @PathVariable Long id) {
+        var project = projectService.getProjectById(id);
+        return project.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
 }

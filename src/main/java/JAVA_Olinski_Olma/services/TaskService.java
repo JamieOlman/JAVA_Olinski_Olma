@@ -49,4 +49,8 @@ public class TaskService {
         }
         return false;
     }
+
+    public Optional<Task> getTaskById(Long id) {
+        return taskRepository.findById(id);
+    }
 }
