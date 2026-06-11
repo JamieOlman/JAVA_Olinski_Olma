@@ -1,5 +1,6 @@
 package JAVA_Olinski_Olma.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.Set;
@@ -19,5 +20,6 @@ public class Users {
     private String username;
 
     @ManyToMany(mappedBy = "users")
+    @JsonIgnoreProperties("users")
     private Set<Project> projects;
 }
