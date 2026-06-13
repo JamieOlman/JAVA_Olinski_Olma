@@ -1,5 +1,6 @@
 package JAVA_Olinski_Olma.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.Set;
@@ -24,5 +25,6 @@ public class Project {
             joinColumns = @JoinColumn(name = "project_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
+    @JsonIgnoreProperties("projects") // <-- DODAJ TO TUTAJ (usuń ManagedReference jeśli był)
     private Set<Users> users;
 }
